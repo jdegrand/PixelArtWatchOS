@@ -12,19 +12,26 @@ struct ContentView: View {
     @State var clickedColor = 1
     @State var currentColor = Color.white
     @State var didTap = false
+    @State var matrix = [[Color]](repeating: [Color](repeating: Color.orange, count: 10), count: 10)
     var body: some View {
         VStack {
             ForEach(0 ..< 10) { item in
                 HStack {
                 ForEach(0 ..< 10) { square in
-                    Rectangle().padding(.horizontal, 0.0).foregroundColor(self.didTap ? Color.white : Color.blue).frame(width: 10, height: 10)
+                    Rectangle().padding(.horizontal, 0.0).foregroundColor(self.matrix[item][square]).frame(width: 10, height: 10)
+                        .gesture(TapGesture()
+                                    .onEnded {
+                            self.matrix[item][square] = self.currentColor
+                                                    }
+                                            )
         
                 }
                 }
             }
             HStack {
             Rectangle().foregroundColor(Color(red: 1, green: 0, blue: 0, opacity: 1.0)).frame(width: 20, height: 20)
-                Rectangle().foregroundColor(Color(red: 1, green: 129/255, blue: 0, opacity: 1.0)).frame(width: 20, height: 20).border(Color.black, width: 2).gesture(TapGesture()
+                Rectangle().foregroundColor(Color(red: 1, green: 129/255, blue: 0, opacity: 1.0)).frame(width: 20, height: 20).border(Color.black, width: 2)
+                    .gesture(TapGesture()
                         .onEnded {
                             self.didTap.toggle()
                         }
