@@ -29,49 +29,36 @@ struct ContentView: View {
                 }
             }
             HStack {
-//                ColorPick(color: .red)
-//                 ColorPick(color: .orange)
-//                 ColorPick(color: .yellow)
-//                 ColorPick(color: .green)
-//                 ColorPick(color: .blue)
-//                 ColorPick(color: .purple)
-               Rectangle().foregroundColor(Color.red).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.red))
-               .gesture(TapGesture()
-                   .onEnded {
-                       self.currentColor = Color.red
-                   }
-               )
-                Rectangle().foregroundColor(Color.orange).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.orange))
-                    .gesture(TapGesture()
-                        .onEnded {
-                            self.currentColor = Color.orange
-                        }
-                    )
-                Rectangle().foregroundColor(Color.yellow).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.yellow))
-                .gesture(TapGesture()
+                ColorPicker(color: .red, currentColor: self.currentColor).gesture(TapGesture()
+                    .onEnded {
+                        self.currentColor = Color.red
+                    }
+                )
+                ColorPicker(color: .orange, currentColor: self.currentColor).gesture(TapGesture()
+                    .onEnded {
+                        self.currentColor = Color.orange
+                    }
+                )
+                ColorPicker(color: .yellow, currentColor: self.currentColor).gesture(TapGesture()
                     .onEnded {
                         self.currentColor = Color.yellow
                     }
                 )
-                Rectangle().foregroundColor(Color.green).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.green))
-                .gesture(TapGesture()
+                ColorPicker(color: .green, currentColor: self.currentColor).gesture(TapGesture()
                     .onEnded {
                         self.currentColor = Color.green
                     }
                 )
-                Rectangle().foregroundColor(Color.blue).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.blue))
-                .gesture(TapGesture()
+                ColorPicker(color: .blue, currentColor: self.currentColor).gesture(TapGesture()
                     .onEnded {
                         self.currentColor = Color.blue
                     }
                 )
-                Rectangle().foregroundColor(Color.purple).frame(width: 20, height: 20).border(Color.black, width: getWidth(color: Color.purple))
-                .gesture(TapGesture()
+                ColorPicker(color: .purple, currentColor: self.currentColor).gesture(TapGesture()
                     .onEnded {
                         self.currentColor = Color.purple
                     }
                 )
-            
             }
         }
     }
@@ -93,14 +80,21 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct ColorPick: View {
+struct ColorPicker: View {
     var color: Color
+    var currentColor: Color
     var body: some View {
         Rectangle().foregroundColor(color).frame(width: 20, height: 20)
-            .gesture(TapGesture()
-                                .onEnded {
-//                                    ContentView.currentColor = Color.orange
-                                }
-                            )
+            .border(Color.black, width: getWidth(color: color))
+    }
+    func getWidth(color: Color) -> CGFloat {
+            if isChosen(color: color) {
+                return 2
+            } else {
+                return 0
+            }
+    }
+    func isChosen(color: Color) -> Bool {
+        return color == self.currentColor
     }
 }
