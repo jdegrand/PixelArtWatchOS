@@ -26,3 +26,5 @@ I decided on this project because I just got an Apple Watch and wanted to see if
 - Add other features!
 
 # Images
+![Screenshot of Inky](https://user-images.githubusercontent.com/33506282/67695838-272c8200-f97c-11e9-8c26-2486472b565f.PNG)
+![Image of Watch running App](https://user-images.githubusercontent.com/33506282/67696382-27794d00-f97d-11e9-9059-ac17f559f894.png)
